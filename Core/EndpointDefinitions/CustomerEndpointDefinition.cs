@@ -48,7 +48,7 @@ namespace Core.EndpointDefinitions
         internal async Task<IResult> DeleteAsync(ICustomerRepository repository, Guid id)
         {
             await repository.DeleteAsync(id);
-            return Results.Ok();
+            return Results.NoContent();
         }
 
         public void DefineServices(IServiceCollection services)
