@@ -7,9 +7,9 @@ namespace Core.Services
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private readonly ApplicationContext context;
+        private readonly ApplicationDbContext context;
 
-        public CustomerRepository(ApplicationContext context)
+        public CustomerRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
