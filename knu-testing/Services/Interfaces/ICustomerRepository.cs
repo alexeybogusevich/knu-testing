@@ -6,11 +6,11 @@ namespace Core.Services.Interfaces
     {
         Task<Customer?> GetAsync(Guid id);
 
-        Task<IEnumerable<Customer>> GetAsync();
+        Task<IEnumerable<Customer?>> GetAsync();
 
         Task CreateAsync(Customer? customer);
 
-        Task UpdateAsync(Customer customer);
+        Task UpdateAsync(Customer? customer);
 
         Task DeleteAsync(Guid id);
     }

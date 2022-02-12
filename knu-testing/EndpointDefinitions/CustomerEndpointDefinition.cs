@@ -8,31 +8,32 @@ namespace Core.EndpointDefinitions
     {
         public void DefineEndpoints(WebApplication app)
         {
-            app.MapGet("/customers", GetAllCustomers);
-            app.MapGet("/customers/{id}", GetCustomerById);
-            app.MapPost("/customers", CreateCustomer);
-            app.MapPut("/customers/{id}", UpdateCustomer);
-            app.MapDelete("/customers/{id}", DeleteCustomerById);
+            app.MapGet("/customers", GetAsync);
+            app.MapGet("/customers/{id}", GetByIdAsync);
+            app.MapPost("/customers", CreateAsync);
+            app.MapPut("/customers/{id}", UpdateAsync);
+            app.MapDelete("/customers/{id}", DeleteAsync);
         }
 
-        internal async Task<IEnumerable<Customer>> GetAllCustomers(ICustomerRepository repository)
+        public async Task<IResult> GetAsync(ICustomerRepository repository)
         {
-            return await repository.GetAsync();
+            var customers = await repository.GetAsync();
+            return Results.Ok(customers);
         }
 
-        internal async Task<IResult> GetCustomerById(ICustomerRepository repository, Guid id)
+        public async Task<IResult> GetByIdAsync(ICustomerRepository repository, Guid id)
         {
             var customer = await repository.GetAsync(id);
             return customer is not null ? Results.Ok(customer) : Results.NotFound();
         }
 
-        internal async Task<IResult> CreateCustomer(ICustomerRepository repository, Customer customer)
+        public async Task<IResult> CreateAsync(ICustomerRepository repository, Customer customer)
         {
             await repository.CreateAsync(customer);
             return Results.Created($"/customers/{customer.Id}", customer);
         }
 
-        internal IResult UpdateCustomer(ICustomerRepository repository, Guid id, Customer updatedCustomer)
+        public IResult UpdateAsync(ICustomerRepository repository, Guid id, Customer updatedCustomer)
         {
             var customer = repository.GetAsync(id);
             if (customer is null)
@@ -44,15 +45,15 @@ namespace Core.EndpointDefinitions
             return Results.Ok(updatedCustomer);
         }
 
-        internal IResult DeleteCustomerById(ICustomerRepository repository, Guid id)
+        public async Task<IResult> DeleteAsync(ICustomerRepository repository, Guid id)
         {
-            repository.DeleteAsync(id);
+            await repository.DeleteAsync(id);
             return Results.Ok();
         }
 
         public void DefineServices(IServiceCollection services)
         {
-            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
         }
     }
 }

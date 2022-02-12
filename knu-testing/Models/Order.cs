@@ -1,6 +1,4 @@
-﻿using Core.Models.Ids;
-
-namespace Core.Models
+﻿namespace Core.Models
 {
-    public record Order(OrderId Id, string Description);
+    public record Order(Guid Id, string Description);
 }

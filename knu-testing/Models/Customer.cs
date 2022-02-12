@@ -1,6 +1,4 @@
-﻿using Core.Models.Ids;
-
-namespace Core.Models
+﻿namespace Core.Models
 {
-    public record Customer(CustomerId Id, string Name);
+    public record Customer(Guid Id, string Name);
 }

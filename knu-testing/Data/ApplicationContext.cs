@@ -6,8 +6,8 @@ namespace Core.Data
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<Order>? Order { get; set; }
-        public DbSet<Customer>? Customers { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 

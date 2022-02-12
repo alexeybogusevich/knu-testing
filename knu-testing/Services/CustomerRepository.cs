@@ -1,33 +1,61 @@
-﻿using Core.Models;
+﻿using Core.Data;
+using Core.Models;
 using Core.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Services
 {
     public class CustomerRepository : ICustomerRepository
     {
-        public void CreateAsync(Customer? customer)
+        private readonly ApplicationContext context;
+
+        public CustomerRepository(ApplicationContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
         }
 
-        public void Delete(Guid id)
+        public async Task<Customer?> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await context.Customers.FindAsync(id);
         }
 
-        public List<Customer> GetAsync()
+        public async Task<IEnumerable<Customer?>> GetAsync()
         {
-            throw new NotImplementedException();
+            return await context.Customers.ToListAsync();
         }
 
-        public Customer? GetAsync(Guid id)
+        public async Task CreateAsync(Customer? customer)
         {
-            throw new NotImplementedException();
+            if (customer == null)
+            {
+                return;
+            }
+
+            await context.Customers.AddAsync(customer);
+            await context.SaveChangesAsync();
         }
 
-        public void Update(Customer customer)
+        public async Task UpdateAsync(Customer? customer)
         {
-            throw new NotImplementedException();
+            if (customer == null)
+            {
+                return;
+            }
+
+            context.Customers.Update(customer);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Guid id)
+        {
+            var customer = await context.Customers.FindAsync(id);
+            if (customer == null)
+            {
+                return;
+            }
+
+            context.Customers.Remove(customer);
+            await context.SaveChangesAsync();
         }
     }
 }

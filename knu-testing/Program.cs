@@ -4,7 +4,7 @@ using Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+builder.Services.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase(nameof(ApplicationContext)));
 builder.Services.AddEndpointDefinitions(typeof(IEndpointDefinition));
 
 var app = builder.Build();
