@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Core.IntegrationTests.Endpoints
 {
-    public class CustomerEndpointTests 
+    public class CustomerEndpointTests
     {
         [Fact]
         public async Task Post_WhenCustomerSupplied_ReturnsCreatedCustomerWithCreatedStatusCode()
