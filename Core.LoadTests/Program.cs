@@ -5,14 +5,13 @@ using NBomber.CSharp;
 using NBomber.Plugins.Http.CSharp;
 using NBomber.Plugins.Network.Ping;
 using Newtonsoft.Json;
+using System.Net;
 using System.Text;
 using HttpClientFactory = NBomber.Plugins.Http.CSharp.HttpClientFactory;
 
-const string ServiceEndpoint = "https://localhost:7123/customers";
+const string Host = "https://localhost:7123";
+const string ServiceEndpoint = $"{Host}/customers";
 var httpFactory = HttpClientFactory.Create();
-
-var pingPluginConfig = PingPluginConfig.CreateDefault("nbomber.com");
-var pingPlugin = new PingPlugin(pingPluginConfig);
 
 var postStep = Step.Create("POST Customer",
     clientFactory: httpFactory,
@@ -104,11 +103,11 @@ var deleteStep = Step.Create("DELETE Customer",
             return Response.Fail();
         }
 
-        return Response.Ok();
+        return Response.Ok(sizeBytes: response.SizeBytes, statusCode: response.StatusCode);
     });
 
 var crudScenario = ScenarioBuilder
-    .CreateScenario("CRUD Load Testing", postStep, putStep, getStep, deleteStep)
+    .CreateScenario("CRUD", postStep, putStep, getStep, deleteStep)
     .WithWarmUpDuration(TimeSpan.FromSeconds(15))
     .WithLoadSimulations(Simulation.KeepConstant(10, TimeSpan.FromSeconds(60)));
 
