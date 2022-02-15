@@ -34,7 +34,7 @@ namespace Core.UnitTests.EndpointDefinitons
             // Act
             var result = await definiton.GetAsync(mockCustomerRepository.Object);
             var actualCustomers = result.GetOkObjectResultValue<IEnumerable<Customer?>>();
-            var actualStatusCode = result.GetNotFoundResultStatusCode();
+            var actualStatusCode = result.GetOkObjectResultStatusCode();
 
             // Assert
             actualCustomers.Should().BeEquivalentTo(expecetedCustomers);
