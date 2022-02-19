@@ -3,9 +3,7 @@ using NBomber.Configuration;
 using NBomber.Contracts;
 using NBomber.CSharp;
 using NBomber.Plugins.Http.CSharp;
-using NBomber.Plugins.Network.Ping;
 using Newtonsoft.Json;
-using System.Net;
 using System.Text;
 using HttpClientFactory = NBomber.Plugins.Http.CSharp.HttpClientFactory;
 
@@ -69,7 +67,7 @@ var getStep = Step.Create("GET Customer",
             return Response.Fail();
         }
 
-        var request = 
+        var request =
             Http.CreateRequest("GET", $"{ServiceEndpoint}/{modifiedCustomer.Id}")
                 .WithCheck(async (response) =>
                             await Task.FromResult(response.IsSuccessStatusCode)

@@ -10,11 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.IntegrationTests", "Core.IntegrationTests\Core.IntegrationTests.csproj", "{0FDA072A-F754-4BD6-B94A-2F4A55121183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.IntegrationTests", "Core.IntegrationTests\Core.IntegrationTests.csproj", "{0FDA072A-F754-4BD6-B94A-2F4A55121183}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{8B93F6B6-7737-49E9-BB1F-741062E5E416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.LoadTests", "Core.LoadTests\Core.LoadTests.csproj", "{D786AB10-433A-4C34-90CA-FB4C81950F8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.LoadTests", "Core.LoadTests\Core.LoadTests.csproj", "{D786AB10-433A-4C34-90CA-FB4C81950F8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DataTests", "Core.DataTests\Core.DataTests.csproj", "{9469908B-6136-4168-9423-6215742D28D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{D786AB10-433A-4C34-90CA-FB4C81950F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D786AB10-433A-4C34-90CA-FB4C81950F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D786AB10-433A-4C34-90CA-FB4C81950F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9469908B-6136-4168-9423-6215742D28D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9469908B-6136-4168-9423-6215742D28D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9469908B-6136-4168-9423-6215742D28D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9469908B-6136-4168-9423-6215742D28D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
